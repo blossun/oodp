@@ -11,6 +11,7 @@ public class Application { //Application이 OnClickListener을 구현하지 않�
     private Menu menu1 = new Menu("menu1");
     private Menu menu2 = new Menu("menu2");
     private Button button1 = new Button("button1");
+    private Button button2 = new Button("button2");
 
     private ScreenUI currentScreen = null;
 
@@ -18,6 +19,7 @@ public class Application { //Application이 OnClickListener을 구현하지 않�
         menu1.setOnClickListener(menuListener);
         menu2.setOnClickListener(menuListener);
         button1.setOnClickListener(buttonListener);
+        button2.setOnClickListener(buttonListener);
     }
 
     private OnClickListener menuListener = new OnClickListener() { //메뉴 이벤트 처리
@@ -36,7 +38,11 @@ public class Application { //Application이 OnClickListener을 구현하지 않�
         public void clicked(Component eventSource) {
             if (currentScreen == null)
                 return;
-            currentScreen.handleButton1Click();
+            if (eventSource.getId().equals("button1")) {
+                currentScreen.handleButton1Click();
+            } else if (eventSource.getId().equals("button2")) {
+                currentScreen.handleButton2Click();
+            }
         }
     };
 

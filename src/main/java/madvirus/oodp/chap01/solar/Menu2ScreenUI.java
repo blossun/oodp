@@ -10,4 +10,9 @@ public class Menu2ScreenUI implements ScreenUI {
     public void handleButton1Click() {
         System.out.println("메뉴2 화면의 버튼1 처리");
     }
+
+    @Override
+    public void handleButton2Click() {
+        System.out.println("메뉴2 화면의 버튼2 처리");
+    }
 }
