@@ -11,7 +11,7 @@ public class Application implements OnClickListener {
     private Menu menu2 = new Menu("menu2");
     private Button button1 = new Button("button1");
 
-    private String currentMenu = null;
+    private ScreenUI currentScreen = null;
 
     public Application() {
         menu1.setOnClickListener(this);
@@ -22,32 +22,16 @@ public class Application implements OnClickListener {
     @Override
     public void clicked(Component eventSource) {
         if (eventSource.getId().equals("menu1")) {
-            changeUIToMenu1();
+            currentScreen = new Menu1ScreenUI();
+            currentScreen.show();
         } else if (eventSource.getId().equals("menu2")) {
-            changeUIToMenu2();
+            currentScreen = new Menu2ScreenUI();
+            currentScreen.show();
         } else if (eventSource.getId().equals("button1")) {
-            if (currentMenu == null)
+            if (currentScreen == null)
                 return;
-            if (currentMenu.equals("menu1"))
-                processButton1WhenMenu1();
-            else if (currentMenu.equals("menu2"))
-                processButton1WhenMenu2();
+            currentScreen.handleButton1Click(); //메뉴1 화면인지 메뉴2 화면인지에 상관없이 currentScreen의 메서드를 실행
         }
-    }
-
-    private void changeUIToMenu1() {
-        currentMenu = "menu1";
-        System.out.println("메뉴1 화면으로 전환");
-    }
-    private void changeUIToMenu2() {
-        currentMenu = "menu2";
-        System.out.println("메뉴2 화면으로 전환");
-    }
-    private void processButton1WhenMenu1() {
-        System.out.println("메뉴1 화면의 버튼1 처리");
-    }
-    private void processButton1WhenMenu2() {
-        System.out.println("메뉴2 화면의 버튼1 처리");
     }
 
 }
